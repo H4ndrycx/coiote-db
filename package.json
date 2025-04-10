@@ -1,0 +1,40 @@
+{
+  "name": "neovim-db",
+  "version": "1.1.0",
+  "description": "Database plugin for neovim",
+  "main": "src/plugin.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulocesar/neovim-db.git"
+  },
+  "keywords": [
+    "nvim",
+    "neovim",
+    "database",
+    "plugin"
+  ],
+  "author": "Paulo Cesar <metasoft.brasil@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paulocesar/neovim-db/issues"
+  },
+  "homepage": "https://github.com/paulocesar/neovim-db#readme",
+  "dependencies": {
+    "knex": "3.1.0",
+    "lodash": "^4.17.21",
+    "mssql": "10.0.1",
+    "mysql": "2.18.1",
+    "oracledb": "6.3.0",
+    "pg": "8.11.3",
+    "sqlite3": "5.1.7-rc.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "mocha": "10.2.0"
+  }
+}

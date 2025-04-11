@@ -1,27 +1,28 @@
 {
-  "name": "neovim-db",
-  "version": "1.1.0",
-  "description": "Database plugin for neovim",
-  "main": "src/plugin.js",
+  "name": "coiote-db",
+  "version": "0.1.0",
+  "description": "Run database files in command line",
+  "bin": {
+      "coiote-db": "src/main.js",
+      "ctdb": "src/main.js"
+  },
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/paulocesar/neovim-db.git"
+    "url": "git+https://github.com/H4ndrycx/coiote-db.git"
   },
   "keywords": [
-    "nvim",
-    "neovim",
     "database",
-    "plugin"
+    "query runner"
   ],
-  "author": "Paulo Cesar <metasoft.brasil@gmail.com>",
+  "author": "Handryc Natan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/paulocesar/neovim-db/issues"
+    "url": "https://github.com/H4ndrycx/coiote-db/issues"
   },
-  "homepage": "https://github.com/paulocesar/neovim-db#readme",
+  "homepage": "https://github.com/H4ndrycx/coiote-db#readme",
   "dependencies": {
     "knex": "3.1.0",
     "lodash": "^4.17.21",

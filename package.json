@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "Run database files in command line",
   "bin": {
-      "coiote-db": "src/main.js",
-      "ctdb": "src/main.js"
+    "coiote-db": "console/app.js",
+    "ctdb": "console/app.js"
   },
   "scripts": {
     "test": "mocha"
@@ -24,13 +24,16 @@
   },
   "homepage": "https://github.com/H4ndrycx/coiote-db#readme",
   "dependencies": {
+    "chalk": "^5.4.1",
+    "figlet": "^1.8.1",
     "knex": "3.1.0",
     "lodash": "^4.17.21",
     "mssql": "10.0.1",
     "mysql": "2.18.1",
     "oracledb": "6.3.0",
     "pg": "8.11.3",
-    "sqlite3": "5.1.7-rc.0"
+    "sqlite3": "5.1.7-rc.0",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

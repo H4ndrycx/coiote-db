@@ -1,5 +1,5 @@
-const util = require('util');
-const _ = require('lodash');
+import util from 'util';
+import _ from 'lodash';
 
 const ts = () => `${(new Date()).toISOString()} ~ `;
 const output = (msg) => (_.isString(msg) ? msg : util.inspect(msg));
@@ -55,4 +55,7 @@ function errorFn(error, context) {
     console.error(params.join('\n'));
 }
 
-module.exports = { error: errorFn, info };
+export default {
+    error: errorFn,
+    info,
+};

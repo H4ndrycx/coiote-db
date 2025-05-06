@@ -1,7 +1,6 @@
 module.exports = {
     env: {
         browser: true,
-        commonjs: true,
         es2021: true,
     },
     extends: 'airbnb-base',
@@ -22,6 +21,18 @@ module.exports = {
         ecmaVersion: 'latest',
     },
     rules: {
+        'import/extensions': [
+            'error',
+            'ignorePackages',
+            {
+                js: 'never',
+                jsx: 'never',
+                mjs: 'never',
+                ts: 'never',
+                tsx: 'never'
+            }
+
+        ],
         indent: [ 'error', 4 ],
         'array-bracket-spacing': 'off',
         'class-methods-use-this': 'off',

@@ -1,41 +1,45 @@
 {
-  "name": "coiote-db",
-  "version": "0.1.0",
-  "description": "Run database files in command line",
-  "bin": {
-      "coiote-db": "src/main.js",
-      "ctdb": "src/main.js"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/H4ndrycx/coiote-db.git"
-  },
-  "keywords": [
-    "database",
-    "query runner"
-  ],
-  "author": "Handryc Natan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/H4ndrycx/coiote-db/issues"
-  },
-  "homepage": "https://github.com/H4ndrycx/coiote-db#readme",
-  "dependencies": {
-    "knex": "3.1.0",
-    "lodash": "^4.17.21",
-    "mssql": "10.0.1",
-    "mysql": "2.18.1",
-    "oracledb": "6.3.0",
-    "pg": "8.11.3",
-    "sqlite3": "5.1.7-rc.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.56.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.1",
-    "mocha": "10.2.0"
-  }
+    "name": "coiote-db",
+    "version": "0.1.0",
+    "description": "Run database files in command line",
+    "type": "module",
+    "bin": {
+        "coiote-db": "console/app.js",
+        "ctdb": "console/app.js"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/H4ndrycx/coiote-db.git"
+    },
+    "keywords": [
+        "database",
+        "query runner"
+    ],
+    "author": "Handryc Natan",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/H4ndrycx/coiote-db/issues"
+    },
+    "homepage": "https://github.com/H4ndrycx/coiote-db#readme",
+    "dependencies": {
+        "chalk": "^5.4.1",
+        "figlet": "^1.8.1",
+        "knex": "3.1.0",
+        "lodash": "^4.17.21",
+        "mssql": "10.0.1",
+        "mysql": "2.18.1",
+        "oracledb": "6.3.0",
+        "pg": "8.11.3",
+        "sqlite3": "5.1.7-rc.0",
+        "yargs": "^17.7.2"
+    },
+    "devDependencies": {
+        "eslint": "^8.56.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.29.1",
+        "mocha": "10.2.0"
+    }
 }

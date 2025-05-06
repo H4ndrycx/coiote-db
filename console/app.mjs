@@ -1,23 +1,28 @@
 #!/usr/bin/env node
+import path from 'path';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+import chalk from 'chalk';
+import figlet from 'figlet';
+import fs from 'fs';
+import url from 'url';
+
+import logger from './core/logger.mjs';
+
 process.env.TZ = 'UTC';
-const path = require('path');
 
-const yargs = require('yargs');
-const chalk = require('chalk');
-const figlet = require('figlet');
-const fs = require('fs');
-
-const logger = require('./logger');
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 const taskPath = path.resolve(__dirname, 'tasks/');
-const taskDir = fs.readdirSync(taskPath).filter((pt) => pt[0] !== '.');
+const tasksDir = fs.readdirSync(taskPath).filter((pt) => pt[0] !== '.');
 
 const tasks = {};
-for (const taskName of taskDir) {
-    tasks[taskName.replace('.js', '')] = require(`${taskPath}/${taskName}`);
+for (const taskName of tasksDir) {
+    const module = await import(`${taskPath}/${taskName}`);
+    tasks[taskName.replace('.mjs', '')] =  module.default || module;
 }
 
-const args = yargs
+const args = yargs()
     .command('$0 [options]', 'Run tasks.', (parse) => {
         parse.usage('Usage: ./$0 [options...]');
 
@@ -28,10 +33,10 @@ const args = yargs
                 default: false
             });
         }
-    }).argv;
+    }).parse(hideBin(process.argv));
 
 const app = {
-    debug: args.debug,
+    debug: args.debug
 };
 
 logger.debug = (...params) => {

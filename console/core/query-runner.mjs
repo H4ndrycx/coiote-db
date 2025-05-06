@@ -1,7 +1,7 @@
-const fs = require('fs');
-const os = require('os');
-const path = require('path');
-const knex = require('knex');
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
+import knex from 'knex';
 
 const configFilename = path.resolve(os.homedir(), '.coiote-db.json');
 
@@ -337,4 +337,4 @@ class QueryRunner {
     }
 }
 
-module.exports = QueryRunner;
+export default QueryRunner;

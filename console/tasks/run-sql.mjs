@@ -1,32 +1,34 @@
-const fs = require('fs');
-const QueryRunner = require('./query-runner');
+import fs from 'fs';
+import QueryRunner from '../core/query-runner.mjs';
 
-async function processInput(queryLines, width) {
+async function processInput(params) {
+    const { app, queryLines, width } = params;
     try {
-        logger.info(`Processing ${queryLines.length} lines of input`);
+        const start = new Date();
+        app.logger.debug(`Processing ${queryLines.length} lines of input`);
         const queryRunner = new QueryRunner(queryLines, width);
 
         const results = await queryRunner.results();
 
         console.log(results.join('\n'));
+        app.logger.debug(`Elapsed time: ${new Date() - start}ms`);
         process.exit(0);
     } catch (error) {
-        logger.error('Error processing input:', error.message);
+        app.logger.error('Error processing input:', error.message);
         process.exit(1);
     }
 }
 
-module.exports = async (opts = {}, app) => {
-    app.logger.info('Starting script...');
-
+export default async function runSql(opts = {}, app) {
+    app.logger.debug('Starting script...');
     const width = process.stdout.columns || 80;
 
     let stdinData = '';
     let stdinTimeout;
 
-    if (process.argv.length >= 3) {
-        app.logger.info(`Trying to use file: ${process.argv[2]}`);
-        const filePath = process.argv[2];
+    if (opts.f) {
+        app.logger.debug(`Trying to use file: ${process.argv[2]}`);
+        const filePath = opts.f;
 
         try {
             if (!fs.existsSync(filePath)) {
@@ -36,7 +38,7 @@ module.exports = async (opts = {}, app) => {
 
             const fileContent = fs.readFileSync(filePath, 'utf8');
             const queryLines = fileContent.split('\n');
-            await processInput(queryLines, width);
+            await processInput({ queryLines, width, app });
             return;
         } catch (error) {
             app.logger.error(`Error reading file: ${error.message}`);
@@ -44,13 +46,13 @@ module.exports = async (opts = {}, app) => {
         }
     }
 
-    app.logger.info('Checking for piped input...');
+    app.logger.debug('Checking for piped input...');
 
     try {
         stdinTimeout = setTimeout(() => {
             console.log('No input detected. Usage:');
-            console.log('./main.js <file_path>');
-            console.log('cat file.sql | ./main.js');
+            console.log('ctdb <file_path>');
+            console.log('cat file.sql | ctdb');
             process.exit(0);
         }, 100);
 
@@ -68,9 +70,9 @@ module.exports = async (opts = {}, app) => {
             }
 
             if (stdinData) {
-                app.logger.info(`Read ${stdinData.length} characters from stdin`);
+                app.logger.debug(`Read ${stdinData.length} characters from stdin`);
                 const queryLines = stdinData.split('\n');
-                await processInput(queryLines, width);
+                await processInput({ queryLines, width, app });
             } else {
                 app.logger.error('No input received');
                 process.exit(1);
